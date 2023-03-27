@@ -29,6 +29,19 @@ class ViewController: UIViewController {
     }
     
     @IBAction func equalsTap(_ sender: Any) {
+        let expression = NSExpression(format: workings)
+        let result = expression.expressionValue(with: nil, context: nil) as! Double
+        let resultString = formatResult(result: result)
+        CalculatorResults.text = resultString
+    }
+    
+    func formatResult(result:Double) -> String{
+        if(result.truncatingRemainder(dividingBy: 1) == 0){
+            return String(format: "%.0f", result)
+        }
+        else{
+            return String(format: "%.2f", result)
+        }
     }
     
     @IBAction func allClearTap(_ sender: Any) {
